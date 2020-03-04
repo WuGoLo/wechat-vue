@@ -2,8 +2,8 @@
   <div class="home">
     <div class="header">
       <van-tabs bind:click="onClick">
-        <van-tab title="商品">内容1</van-tab>
-        <van-tab title="详情">内容2</van-tab>
+        <van-tab title="商品">内容 1</van-tab>
+        <van-tab title="详情">内容 2</van-tab>
       </van-tabs>
     </div>
   </div>

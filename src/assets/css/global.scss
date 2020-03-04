@@ -1,0 +1,38 @@
+// 主题色配置
+$theme-color:#4fc08d;
+
+/// Border Size
+$border-width-base: 1px;
+
+//字体
+$font-family-base: PingFangSC-Regular; //常规字体
+$font-family-minor: PingFangSC-Medium; //次要字体
+$font-body-large: 28px;
+$font-body-normal: 26px;
+
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+
+* {
+  font-family: $font-family-base;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  background: #fff;
+}
+
+#app {
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333333;
+  font-size: $font-body-large;
+}

@@ -2,19 +2,25 @@
   <div class="home">
     <div class="header">
       <van-tabs bind:click="onClick">
-        <van-tab title="商品">内容1</van-tab>
-        <van-tab title="详情">内容2</van-tab>
+        <van-tab title="商品">
+          <prd-buy></prd-buy>
+        </van-tab>
+        <van-tab title="详情">
+
+        </van-tab>
       </van-tabs>
     </div>
   </div>
 </template>
 
 <script>
-import { Tabs, Tab } from 'vant';
+  import { Tabs, Tab } from 'vant';
+  import ProBuy from '@/views/product/prd_buy.vue'
 	export default {
 		components: { 
       [Tabs.name]: Tabs,
       [Tab.name]: Tab,
+      [ProBuy.name]: ProBuy
 		}
 	}
 </script>

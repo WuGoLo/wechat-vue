@@ -5,24 +5,12 @@ module.exports = {
     lintOnSave: false,
     css: {
         loaderOptions: {
-            less:{
-                // http://lesscss.org/usage/#less-options-strict-units `Global Variables`
-                // `primary` is global variables fields name
-                globalVars: {
-                    // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-                    'hack': `true; @import "./src/assets/css/theme.less";`
-                },
-                modifyVars: {
-                    // 或者可以通过 less 文件覆盖（文件路径为绝对路径）
-                    'hack': `true; @import "./src/assets/css/theme.less";`
-                }
-            }
-        }
-    },
-    pluginOptions: {
-        'style-resources-loader': {
-            preProcessor: 'less',
-            patterns: [path.resolve(__dirname, './src/assets/css/theme.less')]
+            sass: {
+                prependData: `@import "@/assets/css/theme.scss"`
+            },
+            scss: {
+                prependData: `@import "@/assets/css/theme.scss";`
+            },
         }
     },
     configureWebpack: (config) => {

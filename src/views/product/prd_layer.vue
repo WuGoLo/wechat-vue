@@ -1,6 +1,6 @@
 <template>
     <div>
-			<p class="wen">默认按钮</p>
+		<p class="wen">默认按钮</p>
       <van-button>默认按钮</van-button>
     </div>
 </template>

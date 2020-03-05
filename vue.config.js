@@ -3,6 +3,16 @@ const path = require('path');
 module.exports = {
     publicPath: "./",
     lintOnSave: false,
+    css: {
+        loaderOptions: {
+            sass: {
+                prependData: `@import "@/assets/css/theme.scss"`
+            },
+            scss: {
+                prependData: `@import "@/assets/css/theme.scss";`
+            },
+        }
+    },
     configureWebpack: (config) => {
         config.entry.app = ['babel-polyfill', './src/main.js']
         // if (process.env.NODE_ENV === 'prd') {

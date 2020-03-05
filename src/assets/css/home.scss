@@ -1,0 +1,25 @@
+.header{
+  .van-tabs--line .van-tabs__wrap {
+    height: 0.45rem;
+  }
+  .van-sticky {
+    background-color: $gray-2;
+    padding-bottom: 0.1rem;
+  }
+  .van-tabs__line {
+    background-color: #04b164;
+  }
+  .van-tab__text {
+    font-size: 0.17rem;
+    font-weight: 600;
+  }
+  .van-tab {
+    color: #ababab;
+  }
+  .van-tab--active {
+    color: #333333;
+  }
+  .van-tabs__content{
+    background: $gray-2;
+  }
+}

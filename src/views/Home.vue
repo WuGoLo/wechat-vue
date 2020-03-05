@@ -43,33 +43,33 @@
 	}
 </script>
 <style lang="scss" scoped>
-$bg-color: #ffffff;
+  $bg-color: #ffffff;
   .header{
     width: 100%;
     overflow: hidden;
-  }
-  .van-tabs--line .van-tabs__wrap {
-    height: 0.45rem;
-  }
-  .van-sticky {
-    background-color: $gray-2;
-    padding-bottom: 0.1rem;
-  }
-  .van-tabs__line {
-    background-color: #04b164;
-  }
-  .van-tab__text {
-    font-size: 0.17rem;
-    font-weight: 600;
-  }
-  .van-tab {
-    color: #ababab;
-  }
-  .van-tab--active {
-    color: #333333;
-  }
-  .van-tabs__content{
-    background: $gray-2;
+    .van-tabs--line .van-tabs__wrap {
+      height: 0.45rem;
+    }
+    .van-sticky {
+      background-color: $gray-2;
+      padding-bottom: 0.1rem;
+    }
+    .van-tabs__line {
+      background-color: #04b164;
+    }
+    .van-tab__text {
+      font-size: 0.17rem;
+      font-weight: 600;
+    }
+    .van-tab {
+      color: #ababab;
+    }
+    .van-tab--active {
+      color: #333333;
+    }
+    .van-tabs__content{
+      background: $gray-2;
+    }
   }
   .purchase-box {
     width: 100%;

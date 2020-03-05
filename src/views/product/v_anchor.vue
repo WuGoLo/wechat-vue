@@ -44,9 +44,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.anchor-box {
-	overflow: hidden;
-}
+	.anchor-box {
+		overflow: hidden;
+	}
 	.anchor-nav {
 		width: 100%;
 		height: 0.4rem;

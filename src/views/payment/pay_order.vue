@@ -10,7 +10,7 @@
           clearable
           label="收货人"
           placeholder="收货人姓名"
-          @click-right-icon="$toast('用户名必须是手机号')"
+          :error-message="messageError"
         />
         <van-field
           v-model="phone"
@@ -18,7 +18,6 @@
           type="number"
           label="手机号"
           placeholder="收货人手机号"
-          @click-right-icon="$toast('必须是数字')"
         />
         <van-field
           v-model="carmodel"
@@ -98,6 +97,7 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
         phone: "",
         carmodel: "",
         detailedAddress:'',
+        messageError:'',
         show: false,
         areaList: {
             province_list: {

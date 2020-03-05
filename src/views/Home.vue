@@ -12,7 +12,7 @@
     </div>
     <div class="purchase-box">
       <van-stepper v-model="value" input-width="0.8rem" button-size="0.46rem"/>
-      <van-button type="primary" size="large" class="btn">立即购买</van-button>
+      <van-button type="primary" size="large" class="btn" @click="onClickPay">立即购买</van-button>
     </div>
   </div>
 </template>
@@ -34,10 +34,15 @@
       return {
         value: 1,
       }
+    },
+    methods: {
+      onClickPay() {
+        this.$router.push({ path:'/payment/order'});
+      },
     }
 	}
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $bg-color: #ffffff;
   .header{
     width: 100%;

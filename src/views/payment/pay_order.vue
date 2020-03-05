@@ -1,7 +1,7 @@
 <template>
   <div class="home">
-    <div class="header">
-      <van-icon name="arrow-left" class="icon-left"/>
+    <div class="head" @click="back()">
+      <van-icon name="arrow-left" class="icon-left" />
     </div>
     <div class="address">
       <van-cell-group>
@@ -10,14 +10,17 @@
           clearable
           label="收货人"
           placeholder="收货人姓名"
-          :error-message="messageError"
+          @blur="getName"
+          :error-message="errorMessage.username"
         />
         <van-field
           v-model="phone"
           clearable
-          type="number"
+          type="tel"
           label="手机号"
           placeholder="收货人手机号"
+          @blur="getPhone"
+          :error-message="errorMessage.phone"
         />
         <van-field
           v-model="carmodel"
@@ -25,6 +28,7 @@
           label="地区"
           placeholder="请选择"
           @click="show = true"
+          :error-message="errorMessage.carmodel"
         />
         <van-popup v-model="show" position="bottom">
               <van-area
@@ -42,8 +46,10 @@
           label="详细地址"
           type="textarea"
           placeholder="如街道、小区、门牌号等"
+          @blur="getAddress"
           autosize
           border
+          :error-message="errorMessage.detailedAddress"
         />
       </van-cell-group>
     </div>
@@ -51,7 +57,7 @@
       <p class="title"><span>Raxwell 一次性防护口罩</span></p>
       <div class="container">
         <div class="box">
-          <div class="img-box"></div>
+          <div class="img-box"><img src="@/assets/images/details2.jpg" alt=""/></div>
           <div class="info-box">
             <p>Raxwell 一次性呼吸过滤口罩医用级熔喷布材料</p>
             <p>数量：50只/盒</p>
@@ -61,26 +67,22 @@
       </div>
       <div class="buy-box">
         <div class="bug">购买数量</div>
-        <div class="count">
-          <span>+</span>
-          <span>1</span>
-          <span>-</span>
-        </div>
+        <van-stepper v-model="value"/>
       </div>
     </div>
     <div class="pay">
-      <div>微信支付</div>
+      <div><img src="@/assets/images/pay.jpg" alt=""/>  微信支付</div>
       <van-icon name="success" class="icon-success"/>
     </div>
     <div class="footer">
       <div>实付款:<span>￥249</span></div>
-      <van-button type="primary">立即支付</van-button>
+      <van-button type="primary" @click="getPay">立即支付</van-button>
     </div>
   </div>
 </template>
 
 <script>
-import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
+import { Icon, cellGroup, Field, Popup, Area, Button, Stepper} from 'vant';
 
     export default {
       components: { 
@@ -89,7 +91,8 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
         [Field.name]:Field,
         [Popup.name]:Popup,
         [Area.name]:Area,
-        [Button.name]:Button
+        [Button.name]:Button,
+        [Stepper.name]: Stepper,
       },
     data() {
       return {
@@ -97,8 +100,9 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
         phone: "",
         carmodel: "",
         detailedAddress:'',
-        messageError:'',
+        errorMessage: { username:"", phone:"", detailedAddress:"" },
         show: false,
+        value: 1,
         areaList: {
             province_list: {
                 110000: '北京市',
@@ -138,19 +142,61 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
 
     },
     methods: {
-         onChange (picker, value, index) {
+        onChange (picker, value, index) {
             console.log('当前值：' + value + '当前索引：' + index)
             let areaName = ''
             for (var i = 0; i < value.length; i++) {
             areaName = areaName + value[i].name + ' '
             }
             this.carmodel = areaName
+            console.log(this.carmodel)
+        },
+        back(){
+          this.$router.go(-1);//返回上一层
+        },
+        getName(event) {
+          let username = event.srcElement.value
+          if(username == ''){
+            this.errorMessage.username = '请输入收货人姓名'
+          }else{
+            this.errorMessage.username = ''
+            this.username = username
+          }
+        },
+        getPhone(event) {
+          let phone = event.srcElement.value.replace(/\s/g, "")
+          console.log(this.phone)
+          let regs = /^((13[0-9])|(17[0-1,6-8])|(15[^4,\\D])|(18[0-9]))\d{8}$/;
+          if(phone == '' || !regs.test(phone)){
+            this.errorMessage.phone = '请输入正确的手机号'
+          }else{
+            this.errorMessage.phone = ''
+            this.phone = phone
+          }
+        },
+        getAddress(event){
+          let detailedAddress = event.srcElement.value
+          if(detailedAddress == ''){
+            this.errorMessage.detailedAddress = '详细地址不能为空'
+          }else{
+            this.errorMessage.detailedAddress = ''
+            this.detailedAddress = detailedAddress
+          }
+        },
+        getPay(){
+          let data={
+            name:this.username,
+            phone:this.phone,
+            carmodel:this.carmodel,
+            address:this.detailedAddress
+          }
+          console.log(data)
         }
     }
   }
 </script>
-<style lang="scss">
-.header{
+<style lang="scss" scoped>
+  .head{
     width: 100%;
     height: 0.45rem;
     line-height: 0.45rem;
@@ -192,6 +238,10 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
           .img-box{
             width: 0.9rem;
             background: $white;
+            img{
+              width: 100%;
+              height: 100%;
+            }
           }
           .info-box{
             flex:1;
@@ -218,34 +268,11 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
         display: flex;
         justify-content: space-between;
         .bug{
+          flex: 1;
           padding-left: 4%;
         }
-        .count{
+        .van-stepper{
           padding-right: 4%;
-          display: flex;
-          flex-direction:row-reverse;
-          align-items:center;
-          span{
-            text-align: center;
-            display: inline-block;
-            width: 0.33rem;
-            height: 0.25rem;
-          }
-          span:nth-child(3){
-            line-height: 0.22rem;
-            background: $gray-2;
-            font-size: $font-body-large;
-            color: $gray-5;
-          }
-          span:nth-child(2){
-            line-height: 0.25rem;
-          }
-          span:nth-child(1){
-            line-height: 0.22rem;
-            background: $gray-4;
-            font-size: 0.24rem;
-            color: $gray-7;
-          }
         }
       }
   }
@@ -261,6 +288,11 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
       line-height: 0.47rem;
       text-align: left;
       padding-left: 4%;
+      img{
+        width: 0.26rem;
+        height: 0.19rem;
+        vertical-align: sub;
+      }
     }
     .icon-success{
       flex: 1;
@@ -297,6 +329,10 @@ import { Icon, cellGroup, Field, Popup, Area, Button} from 'vant';
     .van-button--normal {
       padding: 0 0.28rem;
       font-size: 0.16rem;
+    }
+    .van-stepper__minus, .van-stepper__plus {
+      width: 0.38rem;
+      height: 0.28rem;
     }
 
 </style>

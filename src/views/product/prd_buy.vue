@@ -1,6 +1,6 @@
 <template>
   <div class="crootbox">
-    <img src="@/assets/images/details2.jpg" alt="" width="100%">
+    <img src="@/assets/images/timg.jpg" alt="" width="100%">
     <div class="specification">
       <div class="slogan">
         <p>Raxwell 一次性防护口罩，医疗级溶喷布过滤层</p>
@@ -51,7 +51,7 @@ export default {
   .crootbox {
     background-color: $gray-2;
     img {
-      padding: 0.1rem 0;
+      // padding: 0.1rem 0;
       background-color: #fff;
       margin-bottom: 0.04rem;
     }

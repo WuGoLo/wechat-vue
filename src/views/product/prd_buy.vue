@@ -1,6 +1,6 @@
 <template>
   <div class="crootbox">
-    <img src="@/assets/images/timg.jpg" alt="" width="100%">
+    <img src="@/assets/images/product.jpg" alt="" width="100%">
     <div class="specification">
       <div class="slogan">
         <p>Raxwell 一次性防护口罩，医疗级溶喷布过滤层</p>

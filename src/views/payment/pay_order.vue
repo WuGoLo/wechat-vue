@@ -57,7 +57,7 @@
       <p class="title"><span>Raxwell 一次性防护口罩</span></p>
       <div class="container">
         <div class="box">
-          <div class="img-box"><img src="@/assets/images/details2.jpg" alt=""/></div>
+          <div class="img-box"><img src="@/assets/images/product.jpg" alt=""/></div>
           <div class="info-box">
             <p>Raxwell 一次性呼吸过滤口罩医用级熔喷布材料</p>
             <p>数量：50只/盒</p>
